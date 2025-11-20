@@ -39,6 +39,7 @@ function propostaToKey(p?: string): "site" | null {
   return low.includes("site") ? "site" : null
 }
 
+// TODO: Após se baixar os leads, deverei redirecionar para a página de assistente de IA
 export default function Pesquisa() {
   const [isLoading, setIsLoading] = useState(false)
   const [manifest, setManifest] = useState<Manifest | null>(null)

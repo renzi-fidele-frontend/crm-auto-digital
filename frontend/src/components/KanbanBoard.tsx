@@ -28,6 +28,7 @@ interface KanbanBoardProps {
   onDashboard: () => void;
 }
 
+// TODO: No kanban é preciso recarregar a página para acessar os dados adicionados na página de prospeção
 export function KanbanBoard({ onDashboard }: KanbanBoardProps) {
   const {
     columns,

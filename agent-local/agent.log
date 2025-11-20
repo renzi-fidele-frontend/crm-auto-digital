@@ -1,0 +1,2581 @@
+2025-11-19 19:09:15,086 [INFO] agent: Iniciando agente local — backend=http://localhost:8000
+2025-11-19 19:09:19,206 [ERROR] agent: Falha ao registrar agente: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/register (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002C22AE33B60>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connection.py", line 494, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000002C22AE33B60>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/register (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002C22AE33B60>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 58, in main
+    client.register_agent(capabilities=config.job_types, version=AGENT_VERSION)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 51, in register_agent
+    return self._post("/api/agents/register", payload)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 27, in _post
+    resp = self.session.post(url, json=json_data, timeout=30)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\requests\sessions.py", line 637, in post
+    return self.request("POST", url, data=data, json=json, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\requests\adapters.py", line 677, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/register (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002C22AE33B60>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+2025-11-19 19:09:38,332 [ERROR] agent: Erro na comunicação com o backend: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002C22B70E850>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connection.py", line 494, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000002C22B70E850>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002C22B70E850>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 68, in main
+    job = client.fetch_next_job(config.job_types)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 59, in fetch_next_job
+    data = self._get("/api/agents/next-job", params=params)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 35, in _get
+    resp = self.session.get(url, params=params, timeout=30)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\requests\adapters.py", line 677, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002C22B70E850>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+2025-11-19 19:10:12,422 [ERROR] agent: Erro na comunicação com o backend: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002C22B70ED50>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connection.py", line 494, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000002C22B70ED50>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002C22B70ED50>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 68, in main
+    job = client.fetch_next_job(config.job_types)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 59, in fetch_next_job
+    data = self._get("/api/agents/next-job", params=params)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 35, in _get
+    resp = self.session.get(url, params=params, timeout=30)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\requests\adapters.py", line 677, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002C22B70ED50>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+2025-11-19 19:11:01,492 [ERROR] agent: Erro na comunicação com o backend: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002C22B704FC0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connection.py", line 494, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000002C22B704FC0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002C22B704FC0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 68, in main
+    job = client.fetch_next_job(config.job_types)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 59, in fetch_next_job
+    data = self._get("/api/agents/next-job", params=params)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 35, in _get
+    resp = self.session.get(url, params=params, timeout=30)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\requests\adapters.py", line 677, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002C22B704FC0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+2025-11-19 19:12:05,629 [ERROR] agent: Erro na comunicação com o backend: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002C22B7055B0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connection.py", line 494, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000002C22B7055B0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002C22B7055B0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 68, in main
+    job = client.fetch_next_job(config.job_types)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 59, in fetch_next_job
+    data = self._get("/api/agents/next-job", params=params)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 35, in _get
+    resp = self.session.get(url, params=params, timeout=30)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\requests\adapters.py", line 677, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002C22B7055B0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+2025-11-19 19:34:38,271 [INFO] agent: Iniciando agente local — backend=http://localhost:8000
+2025-11-19 19:34:40,374 [INFO] agent: Agente registrado com ID 'local-agent'
+2025-11-19 19:39:30,819 [INFO] agent: Job recebido: id=1 tipo=whatsapp_send
+2025-11-19 19:39:30,820 [INFO] WDM: ====== WebDriver manager ======
+2025-11-19 19:39:31,888 [INFO] WDM: Get LATEST chromedriver version for google-chrome
+2025-11-19 19:39:32,499 [INFO] WDM: Get LATEST chromedriver version for google-chrome
+2025-11-19 19:39:33,102 [INFO] WDM: Driver [C:\Users\Fidele\.wdm\drivers\chromedriver\win64\142.0.7444.175\chromedriver-win32/chromedriver.exe] found in cache
+2025-11-19 19:39:34,244 [INFO] agent.whatsapp_runner: Driver do Chrome inicializado com perfil C:\Users\Fidele\.agent-local\chrome-profile
+2025-11-19 19:39:34,245 [INFO] agent.whatsapp_runner: Abrindo conversa com 845584558
+2025-11-19 19:40:12,090 [ERROR] agent.whatsapp_runner: Composer não encontrado: Message: 
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0xa14103
+	0xa14144
+	0x81e71d
+	0x86a03d
+	0x86a41b
+	0x8b17f2
+	0x88c954
+	0x8aee17
+	0x88c706
+	0x85da30
+	0x85ed54
+	0xc857b4
+	0xc8098a
+	0xa3c392
+	0xa2c4c8
+	0xa3324d
+	0xa1c478
+	0xa1c63c
+	0xa067ca
+	0x759dfcc9
+	0x779e82ae
+	0x779e827e
+
+2025-11-19 19:40:12,092 [ERROR] agent: Erro ao processar job 1: Message: 
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0xa14103
+	0xa14144
+	0x81e71d
+	0x86a03d
+	0x86a41b
+	0x8b17f2
+	0x88c954
+	0x8aee17
+	0x88c706
+	0x85da30
+	0x85ed54
+	0xc857b4
+	0xc8098a
+	0xa3c392
+	0xa2c4c8
+	0xa3324d
+	0xa1c478
+	0xa1c63c
+	0xa067ca
+	0x759dfcc9
+	0x779e82ae
+	0x779e827e
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 77, in main
+    result = process_job(job, runner)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 42, in process_job
+    return runner.send_whatsapp(phone=phone, message=message)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\whatsapp_runner.py", line 77, in send_whatsapp
+    composer = self._wait_for_composer(driver)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\whatsapp_runner.py", line 93, in _wait_for_composer
+    return WebDriverWait(driver, timeout).until(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        EC.presence_of_element_located((By.CSS_SELECTOR, COMPOSER_SELECTOR))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\selenium\webdriver\support\wait.py", line 138, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0xa14103
+	0xa14144
+	0x81e71d
+	0x86a03d
+	0x86a41b
+	0x8b17f2
+	0x88c954
+	0x8aee17
+	0x88c706
+	0x85da30
+	0x85ed54
+	0xc857b4
+	0xc8098a
+	0xa3c392
+	0xa2c4c8
+	0xa3324d
+	0xa1c478
+	0xa1c63c
+	0xa067ca
+	0x759dfcc9
+	0x779e82ae
+	0x779e827e
+
+2025-11-19 19:41:34,637 [INFO] agent: Job recebido: id=2 tipo=whatsapp_send
+2025-11-19 19:41:34,638 [INFO] agent.whatsapp_runner: Abrindo conversa com 851912063
+2025-11-19 19:41:34,643 [ERROR] agent: Erro ao processar job 2: Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=142.0.7444.163); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0xa14103
+	0xa14144
+	0x81e71d
+	0x80d910
+	0x82c714
+	0x893475
+	0x8ae749
+	0x88c706
+	0x85da30
+	0x85ed54
+	0xc857b4
+	0xc8098a
+	0xa3c392
+	0xa2c4c8
+	0xa3324d
+	0xa1c478
+	0xa1c63c
+	0xa067ca
+	0x759dfcc9
+	0x779e82ae
+	0x779e827e
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 77, in main
+    result = process_job(job, runner)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 42, in process_job
+    return runner.send_whatsapp(phone=phone, message=message)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\whatsapp_runner.py", line 74, in send_whatsapp
+    driver.get(url)
+    ~~~~~~~~~~^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 483, in get
+    self.execute(Command.GET, {"url": url})
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 458, in execute
+    self.error_handler.check_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\.venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 233, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.InvalidSessionIdException: Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=142.0.7444.163); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0xa14103
+	0xa14144
+	0x81e71d
+	0x80d910
+	0x82c714
+	0x893475
+	0x8ae749
+	0x88c706
+	0x85da30
+	0x85ed54
+	0xc857b4
+	0xc8098a
+	0xa3c392
+	0xa2c4c8
+	0xa3324d
+	0xa1c478
+	0xa1c63c
+	0xa067ca
+	0x759dfcc9
+	0x779e82ae
+	0x779e827e
+
+2025-11-19 19:44:07,908 [INFO] agent: Iniciando agente local — backend=http://localhost:8000
+2025-11-19 19:44:09,967 [INFO] agent: Agente registrado com ID 'local-agent'
+2025-11-19 19:44:27,171 [INFO] agent: Job recebido: id=3 tipo=whatsapp_send
+2025-11-19 19:44:27,172 [INFO] WDM: ====== WebDriver manager ======
+2025-11-19 19:44:28,128 [INFO] WDM: Get LATEST chromedriver version for google-chrome
+2025-11-19 19:44:28,271 [INFO] WDM: Get LATEST chromedriver version for google-chrome
+2025-11-19 19:44:28,415 [INFO] WDM: Driver [C:\Users\Fidele\.wdm\drivers\chromedriver\win64\142.0.7444.175\chromedriver-win32/chromedriver.exe] found in cache
+2025-11-19 19:44:29,685 [INFO] agent.whatsapp_runner: Driver do Chrome inicializado com perfil C:\Users\Fidele\.agent-local\chrome-profile
+2025-11-19 19:44:29,686 [INFO] agent.whatsapp_runner: Abrindo conversa com 822282772
+2025-11-19 19:45:02,893 [ERROR] agent.whatsapp_runner: Composer não encontrado: Message: 
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0xa14103
+	0xa14144
+	0x81e71d
+	0x86a03d
+	0x86a41b
+	0x8b17f2
+	0x88c954
+	0x8aee17
+	0x88c706
+	0x85da30
+	0x85ed54
+	0xc857b4
+	0xc8098a
+	0xa3c392
+	0xa2c4c8
+	0xa3324d
+	0xa1c478
+	0xa1c63c
+	0xa067ca
+	0x759dfcc9
+	0x779e82ae
+	0x779e827e
+
+2025-11-19 19:45:02,895 [ERROR] agent: Erro ao processar job 3: Message: 
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0xa14103
+	0xa14144
+	0x81e71d
+	0x86a03d
+	0x86a41b
+	0x8b17f2
+	0x88c954
+	0x8aee17
+	0x88c706
+	0x85da30
+	0x85ed54
+	0xc857b4
+	0xc8098a
+	0xa3c392
+	0xa2c4c8
+	0xa3324d
+	0xa1c478
+	0xa1c63c
+	0xa067ca
+	0x759dfcc9
+	0x779e82ae
+	0x779e827e
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 77, in main
+    result = process_job(job, runner)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 42, in process_job
+    return runner.send_whatsapp(phone=phone, message=message)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\whatsapp_runner.py", line 77, in send_whatsapp
+    composer = self._wait_for_composer(driver)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\whatsapp_runner.py", line 93, in _wait_for_composer
+    return WebDriverWait(driver, timeout).until(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        EC.presence_of_element_located((By.CSS_SELECTOR, COMPOSER_SELECTOR))
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\selenium\webdriver\support\wait.py", line 138, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0xa14103
+	0xa14144
+	0x81e71d
+	0x86a03d
+	0x86a41b
+	0x8b17f2
+	0x88c954
+	0x8aee17
+	0x88c706
+	0x85da30
+	0x85ed54
+	0xc857b4
+	0xc8098a
+	0xa3c392
+	0xa2c4c8
+	0xa3324d
+	0xa1c478
+	0xa1c63c
+	0xa067ca
+	0x759dfcc9
+	0x779e82ae
+	0x779e827e
+
+2025-11-19 19:58:45,407 [ERROR] agent: Erro na comunicação com o backend: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEF82F0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 494, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000001DF6DEF82F0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEF82F0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 68, in main
+    job = client.fetch_next_job(config.job_types)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 59, in fetch_next_job
+    data = self._get("/api/agents/next-job", params=params)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 35, in _get
+    resp = self.session.get(url, params=params, timeout=30)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEF82F0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+2025-11-19 19:59:19,506 [ERROR] agent: Erro na comunicação com o backend: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEE5BD0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 494, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000001DF6DEE5BD0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEE5BD0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 68, in main
+    job = client.fetch_next_job(config.job_types)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 59, in fetch_next_job
+    data = self._get("/api/agents/next-job", params=params)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 35, in _get
+    resp = self.session.get(url, params=params, timeout=30)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEE5BD0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+2025-11-19 20:00:08,588 [ERROR] agent: Erro na comunicação com o backend: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEB1E00>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 494, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000001DF6DEB1E00>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEB1E00>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 68, in main
+    job = client.fetch_next_job(config.job_types)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 59, in fetch_next_job
+    data = self._get("/api/agents/next-job", params=params)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 35, in _get
+    resp = self.session.get(url, params=params, timeout=30)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEB1E00>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+2025-11-19 20:01:12,706 [ERROR] agent: Erro na comunicação com o backend: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEB0C30>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 494, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000001DF6DEB0C30>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEB0C30>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 68, in main
+    job = client.fetch_next_job(config.job_types)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 59, in fetch_next_job
+    data = self._get("/api/agents/next-job", params=params)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 35, in _get
+    resp = self.session.get(url, params=params, timeout=30)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEB0C30>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+2025-11-19 20:02:16,805 [ERROR] agent: Erro na comunicação com o backend: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DE668D0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 494, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000001DF6DE668D0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DE668D0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 68, in main
+    job = client.fetch_next_job(config.job_types)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 59, in fetch_next_job
+    data = self._get("/api/agents/next-job", params=params)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 35, in _get
+    resp = self.session.get(url, params=params, timeout=30)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DE668D0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+2025-11-19 20:03:20,880 [ERROR] agent: Erro na comunicação com o backend: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAE470>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 494, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000001DF6DEAE470>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAE470>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 68, in main
+    job = client.fetch_next_job(config.job_types)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 59, in fetch_next_job
+    data = self._get("/api/agents/next-job", params=params)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 35, in _get
+    resp = self.session.get(url, params=params, timeout=30)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAE470>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+2025-11-19 20:04:25,030 [ERROR] agent: Erro na comunicação com o backend: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAE7A0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 494, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000001DF6DEAE7A0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAE7A0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 68, in main
+    job = client.fetch_next_job(config.job_types)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 59, in fetch_next_job
+    data = self._get("/api/agents/next-job", params=params)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 35, in _get
+    resp = self.session.get(url, params=params, timeout=30)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAE7A0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+2025-11-19 20:05:29,134 [ERROR] agent: Erro na comunicação com o backend: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAEAD0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 494, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000001DF6DEAEAD0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAEAD0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 68, in main
+    job = client.fetch_next_job(config.job_types)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 59, in fetch_next_job
+    data = self._get("/api/agents/next-job", params=params)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 35, in _get
+    resp = self.session.get(url, params=params, timeout=30)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAEAD0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+2025-11-19 20:06:33,256 [ERROR] agent: Erro na comunicação com o backend: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAEE00>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 494, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000001DF6DEAEE00>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAEE00>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 68, in main
+    job = client.fetch_next_job(config.job_types)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 59, in fetch_next_job
+    data = self._get("/api/agents/next-job", params=params)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 35, in _get
+    resp = self.session.get(url, params=params, timeout=30)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAEE00>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+2025-11-19 20:07:37,356 [ERROR] agent: Erro na comunicação com o backend: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAF130>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 494, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000001DF6DEAF130>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAF130>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 68, in main
+    job = client.fetch_next_job(config.job_types)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 59, in fetch_next_job
+    data = self._get("/api/agents/next-job", params=params)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 35, in _get
+    resp = self.session.get(url, params=params, timeout=30)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAF130>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+2025-11-19 20:08:41,443 [ERROR] agent: Erro na comunicação com o backend: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAF460>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 494, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000001DF6DEAF460>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAF460>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 68, in main
+    job = client.fetch_next_job(config.job_types)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 59, in fetch_next_job
+    data = self._get("/api/agents/next-job", params=params)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 35, in _get
+    resp = self.session.get(url, params=params, timeout=30)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAF460>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+2025-11-19 20:09:45,539 [ERROR] agent: Erro na comunicação com o backend: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAF790>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 494, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000001DF6DEAF790>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAF790>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 68, in main
+    job = client.fetch_next_job(config.job_types)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 59, in fetch_next_job
+    data = self._get("/api/agents/next-job", params=params)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 35, in _get
+    resp = self.session.get(url, params=params, timeout=30)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAF790>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+2025-11-19 20:10:49,678 [ERROR] agent: Erro na comunicação com o backend: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAFAC0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 494, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000001DF6DEAFAC0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAFAC0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 68, in main
+    job = client.fetch_next_job(config.job_types)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 59, in fetch_next_job
+    data = self._get("/api/agents/next-job", params=params)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 35, in _get
+    resp = self.session.get(url, params=params, timeout=30)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAFAC0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+2025-11-19 20:11:53,811 [ERROR] agent: Erro na comunicação com o backend: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAFDF0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 494, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000001DF6DEAFDF0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAFDF0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 68, in main
+    job = client.fetch_next_job(config.job_types)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 59, in fetch_next_job
+    data = self._get("/api/agents/next-job", params=params)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 35, in _get
+    resp = self.session.get(url, params=params, timeout=30)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6DEAFDF0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+2025-11-19 20:12:57,920 [ERROR] agent: Erro na comunicação com o backend: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6E300160>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 494, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000001DF6E300160>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6E300160>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 68, in main
+    job = client.fetch_next_job(config.job_types)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 59, in fetch_next_job
+    data = self._get("/api/agents/next-job", params=params)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 35, in _get
+    resp = self.session.get(url, params=params, timeout=30)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6E300160>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+2025-11-19 20:14:02,017 [ERROR] agent: Erro na comunicação com o backend: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6E300490>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 494, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000001DF6E300490>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6E300490>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 68, in main
+    job = client.fetch_next_job(config.job_types)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 59, in fetch_next_job
+    data = self._get("/api/agents/next-job", params=params)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 35, in _get
+    resp = self.session.get(url, params=params, timeout=30)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6E300490>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+2025-11-19 20:15:06,104 [ERROR] agent: Erro na comunicação com o backend: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6E3007C0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 494, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000001DF6E3007C0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6E3007C0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 68, in main
+    job = client.fetch_next_job(config.job_types)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 59, in fetch_next_job
+    data = self._get("/api/agents/next-job", params=params)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 35, in _get
+    resp = self.session.get(url, params=params, timeout=30)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6E3007C0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+2025-11-19 20:16:10,212 [ERROR] agent: Erro na comunicação com o backend: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6E300AF0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 494, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000001DF6E300AF0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6E300AF0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 68, in main
+    job = client.fetch_next_job(config.job_types)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 59, in fetch_next_job
+    data = self._get("/api/agents/next-job", params=params)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 35, in _get
+    resp = self.session.get(url, params=params, timeout=30)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6E300AF0>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+2025-11-19 20:17:14,366 [ERROR] agent: Erro na comunicação com o backend: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6E300E20>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 494, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000001DF6E300E20>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6E300E20>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 68, in main
+    job = client.fetch_next_job(config.job_types)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 59, in fetch_next_job
+    data = self._get("/api/agents/next-job", params=params)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 35, in _get
+    resp = self.session.get(url, params=params, timeout=30)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6E300E20>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+2025-11-19 20:18:18,461 [ERROR] agent: Erro na comunicação com o backend: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6E301150>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+    ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<6 lines>...
+        enforce_content_length=enforce_content_length,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 494, in request
+    self.endheaders()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Fidele\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1037, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 325, in connect
+    self.sock = self._new_conn()
+                ~~~~~~~~~~~~~~^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+        self, f"Failed to establish a new connection: {e}"
+    ) from e
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x000001DF6E301150>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6E301150>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\main.py", line 68, in main
+    job = client.fetch_next_job(config.job_types)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 59, in fetch_next_job
+    data = self._get("/api/agents/next-job", params=params)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\agent-local\agent\jobs_client.py", line 35, in _get
+    resp = self.session.get(url, params=params, timeout=30)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Fidele\Documents\Estudos.v2\Projetos do Daniel\crm-auto-digital\backend\.venv\Lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /api/agents/next-job?agent_id=local-agent&token=change-me&types=whatsapp_send (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DF6E301150>: Failed to establish a new connection: [WinError 10061] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente'))

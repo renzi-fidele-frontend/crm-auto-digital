@@ -10,6 +10,7 @@ import { CrmHeader } from '@/components/CrmHeader';
 import { useNavigate } from 'react-router-dom';
 import { api } from '@/services/api';
 
+// TODO: Após confirmar o processamento na página do Assistente de IA, redirecionar para o CRM e remover o botão de voltar a confirmar e processar a operação
 const AssistenteIA = () => {
   // ======= estados existentes =======
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
